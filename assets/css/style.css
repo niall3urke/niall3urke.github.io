@@ -1,0 +1,37 @@
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+table.table-specs td { 
+  padding: 0 0.1rem 0.5rem 0.1rem;
+  border: none;
+}
+
+.featured-image {
+  background-image: url('https://images.adsttc.com/media/images/5ebc/b981/b357/658b/d400/00cf/slideshow/DA__154.jpg?1589426548');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.underlay {
+  background-color: rgba(0,0,0,0.4);
+  height: 100%;
+  width: 100%;
+}
+
+.is-sticky {
+  position: fixed;
+  top: 1rem;
+}
+
+.popular-box > .columns:not(:last-child) {
+  border-bottom: 1px solid hsl(0, 0%, 86%);
+}
