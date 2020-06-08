@@ -16,7 +16,6 @@ table.table-specs td {
 }
 
 .featured-image {
-  background-image: url('https://images.adsttc.com/media/images/5ebc/b981/b357/658b/d400/00cf/slideshow/DA__154.jpg?1589426548');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -34,4 +33,10 @@ table.table-specs td {
 
 .popular-box > .columns:not(:last-child) {
   border-bottom: 1px solid hsl(0, 0%, 86%);
+}
+
+
+.card.is-rounded {
+  border-radius: 4px;
+  overflow: hidden;
 }
