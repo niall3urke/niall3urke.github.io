@@ -11,8 +11,8 @@
 }
 
 table.table-specs td { 
-  padding: 0 0.1rem 0.5rem 0.1rem;
-  border: none;
+  padding: 0 0.1rem 0.5rem 0.1rem !important;
+  border: none !important;
 }
 
 .featured-image {
