@@ -107,13 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // =================================================
 
     function loadImage(image) {
-      var figure = image.closest("figure");
-      loadLargeImage(figure);
-    }
-  
-    function loadLargeImage(figure) {
-      // Get the placeholder, it contains the src and srcset
-      var imageThumb = figure.querySelector(".lazy--placeholder");
+      // The parent could be a figure, or an a element
+      var parent = image.parentNode;
   
       // Create an image object
       var imageLarge = new Image();
@@ -134,12 +129,13 @@ document.addEventListener("DOMContentLoaded", function () {
         imageLarge.classList.add("lazy--loaded");
         
         // Get rid of the placeholder
-        figure.removeChild(imageThumb);
+        parent.removeChild(image);
       };
   
       // Add it to the document
-      figure.append(imageLarge);
+      parent.append(imageLarge);
     }
+
 
 
   });
