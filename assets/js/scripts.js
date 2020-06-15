@@ -114,10 +114,10 @@ document.addEventListener("DOMContentLoaded", function () {
       var imageLarge = new Image();
   
       // Get the src for the large image
-      imageLarge.src = imageThumb.dataset.src;
+      imageLarge.src = image.dataset.src;
       
       // Get the srcset for the large image
-      imageLarge.srcset = imageThumb.dataset.srcset;
+      imageLarge.srcset = image.dataset.srcset;
       
       // Add class to make it's default opacity 0
       imageLarge.classList.add("lazy");
