@@ -18,6 +18,7 @@
 
 .underlay {
     background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
     height: 100%;
     width: 100%;
 }
