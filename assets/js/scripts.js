@@ -136,7 +136,145 @@ document.addEventListener("DOMContentLoaded", function () {
       parent.append(imageLarge);
     }
 
+ // ===================================
+  // ===== Height and width of viewport
+  // ===================================
 
+  let vw = Math.min(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
+  
+  let vh = Math.max(
+    document.documentElement.clientHeight || 0,
+    window.innerHeight || 0
+  );
 
-  });
+  // ========================================
+  // ===== Gallery fields and event handlers
+  // ========================================
+  
+  let galleryImages = document.querySelectorAll(".gallery-image");
+  let galleryLinks = document.querySelectorAll(".open-gallery");
+  let galleryIndex = document.querySelector(".gallery-index");
+  let gallery = document.querySelector(".gallery-images");
+  let modal = document.querySelector(".modal");
+  
+  // ===== Gallery nav controls
+
+  let btnClose = document.querySelector(".modal-close");
+  let btnPrev = document.querySelector("#btn-prev");
+  let btnNext = document.querySelector("#btn-next");
+  
+  function setGalleryEventHandlers() {
+    if (gallery == null)
+      return;
+
+    for (let i = 0; i < galleryLinks.length; i++) {
+      galleryLinks[i].onclick = openModal;
+    }
+
+    if (btnClose !== null) {
+      btnClose.onclick = closeModal;
+    }
+
+    if (btnPrev !== null) {
+      btnPrev.onclick = prevImage;
+    }
+
+    if (btnNext !== null) {
+      btnNext.onclick = nextImage;
+    }
+    
+    gallery.onscroll = galleryScroll;
+    document.onkeydown = checkKey;
+  }
+  
+  setGalleryEventHandlers();
+
+  // ====================
+  // ===== Modal methods
+  // ====================
+
+  function openModal() {
+    modal.classList.add("is-active");
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-active");
+  }
+    
+  let timer = null;
+  function galleryScroll(e) {
+    if(timer !== null) {
+      clearTimeout(timer);        
+    }
+    timer = setTimeout(function() {
+      let index = Math.ceil(gallery.scrollLeft / vw) + 1;
+      let count = galleryImages.length;
+      galleryIndex.innerText = `${index} / ${count}`;
+    }, 150);
+  }
+
+  function nextImage() {
+    incrementGallery(1);
+  }
+
+  function prevImage() {
+    incrementGallery(-1);
+  }
+  
+  function incrementGallery(direction) {
+    // Get the current position of the scroll
+    let left = gallery.scrollLeft;
+    
+    // Determine the distance to scroll by
+    let width = vw * direction;
+    
+    // Get the new scroll position
+    let scroll = left + width;
+    
+    // Check we're not at the end of the gallery
+    if (scroll > (galleryImages.length - 1) * vw) {
+      // Going beyond last image, go back to first
+      scroll = 0;
+    }
+    
+    else if (scroll < 0) {
+      // Going beyond first image, go to last
+      scroll = (galleryImages.length - 1) * vw;
+    }
+    
+    // Move to the images position
+    gallery.scrollLeft = scroll;
+    
+  }
+  
+  function checkKey(e) {
+    if (!modal.classList.contains('is-active'))
+      return;
+    
+    e = e || window.event;
+    
+    if (e.keyCode == '37') {
+      prevImage(); // Left arrow
+      e.preventDefault();
+    }
+    
+    if (e.keyCode == '39') {
+      nextImage(); // Right arrow
+      e.preventDefault();
+    }
+    
+    if (e.keyCode == '32') {
+      nextImage(); // Space bar
+      e.preventDefault();
+    }
+    
+    if (e.keyCode == '27') {
+      closeModal(); // Escape button
+    }
+  }
+
+});
   
