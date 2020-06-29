@@ -136,7 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
       parent.append(imageLarge);
     }
 
- // ===================================
+  
+  // ===================================
   // ===== Height and width of viewport
   // ===================================
 
